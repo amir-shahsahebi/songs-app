@@ -27,7 +27,7 @@ class SongList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  // console.log(state);
   // state is all data inside of redux store
   return { songs: state.songs }; // we need song key value here
   // return state;
