@@ -33,5 +33,6 @@ const mapStateToProps = (state) => {
   // return state;
 };
 
-export default connect(mapStateToProps, { selectSong })(SongList); // connect() ====> return a function and () ======> invoke the function that returned
+export default connect(mapStateToProps, { selectSong })(SongList); // connect() ====> return a function and () ======> invoke the function that returned ==> the connect make props og this component connected with redux
 // {selectSong: selectSong} ==> { selectSong } selectSong is an action here that we pass to the this.props in SongList class and its like store.dispatch() in codepen to understanding redux that we have an action creator
+// when ever we want to call an action, we must write it on connect function as second argument as an obj but because features of es7 we can write simple form like { selectSong } instead of {selectSong: selectSong}
