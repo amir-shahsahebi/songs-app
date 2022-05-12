@@ -10,7 +10,7 @@ class PostList extends Component {
   }
 
   renderList() {
-    return this.props.post.map((post) => {
+    return this.props.posts.map((post) => {
       return (
         <div className="item" key={post.id}>
           <i className="large middle aligned icon user"></i>
@@ -35,7 +35,7 @@ class PostList extends Component {
 // important: whenever we need to grab some data from redux, we must use mapStateToProps function ann put in on connect as first argument
 const mapStateToProps = (state) => {
   // state is entire of our store
-  return { post: state.post }; // mapStateToProps must return an object and key of that is the key that we crated in reducers
+  return { posts: state.posts }; // mapStateToProps must return an object and key of that is the key that we crated in reducers
 };
 
 export default connect(mapStateToProps, { fetchPosts })(PostList);
