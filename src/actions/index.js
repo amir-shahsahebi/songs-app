@@ -4,5 +4,5 @@ export const fetchPosts = () => async (dispatch) => {
   //we use es 2020 features and just first argument (dispatch) is needed to use and because of arrow function we remove first return
   const response = await jsonPlaceHolder.get("/posts");
 
-  dispatch({ type: "FETCH_POSTS", payload: response });
+  dispatch({ type: "FETCH_POSTS", payload: response.data });
 };
