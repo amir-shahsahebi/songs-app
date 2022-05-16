@@ -1,4 +1,12 @@
 import _ from "lodash"; // this is a lodash library
+import jsonPlaceHolder from "../apis/jsonPlaceHolder";
+
+export const fetchPostsAndUsers = () => async (dispatch, getState) => {
+  // "getState" is second argument that give we access to all data that is in store
+  await dispatch(fetchPosts()); // we cannot call "fetchPosts" directly and we must call it in dispatch and also we need "await" because it takes time to response
+  getState().posts;
+  console.log("after etching posts");
+};
 
 //   // simple form of function (action creator)
 // export const fetchUser = function (id) {
@@ -8,7 +16,6 @@ import _ from "lodash"; // this is a lodash library
 //   };
 // };
 
-import jsonPlaceHolder from "../apis/jsonPlaceHolder";
 // when we use a middleware like redux-thunk in our redux, we can pass a function to action creators and it takes two argument named dispatch amd getState and do not need to return an object inside of that, so we call dispatch and make an object inside of that
 export const fetchPosts = () => async (dispatch) => {
   //we use es 2020 features and just first argument (dispatch) is needed to use and because of arrow function we remove first return
@@ -31,7 +38,7 @@ export const fetchPosts = () => async (dispatch) => {
 //   };
 // });
 
-// // this also have issue (repetitive network requests)
+// // with this method also we have same issue (repetitive network requests)
 // export const fetchUser = function (id) {
 //   return _.memoize(async function (dispatch) {
 //     const response = await jsonPlaceHolder.get(`users/${id}`);
@@ -39,9 +46,15 @@ export const fetchPosts = () => async (dispatch) => {
 //   });
 // };
 
-export const fetchUser = (id) => (dispatch) => _fetchUser(id, dispatch);
+// // this method works well but its a little complicated
+// export const fetchUser = (id) => (dispatch) => _fetchUser(id, dispatch);
 
-const _fetchUser = _.memoize(async (id, dispatch) => {
+// const _fetchUser = _.memoize(async (id, dispatch) => {
+//   const response = await jsonPlaceHolder.get(`users/${id}`);
+//   dispatch({ type: "FETCH_USER", payload: response.data });
+// });
+
+export const fetchUser = (id) => async (dispatch) => {
   const response = await jsonPlaceHolder.get(`users/${id}`);
   dispatch({ type: "FETCH_USER", payload: response.data });
-});
+};
