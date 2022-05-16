@@ -6,6 +6,13 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
   await dispatch(fetchPosts()); // we cannot call "fetchPosts" directly and we must call it in dispatch and also we need "await" because it takes time to response
   const userIds = _.uniq(_.map(getState().posts, "userId"));
   userIds.forEach((id) => dispatch(fetchUser(id))); //we dont need "await" because after that we dont use anything that needed to fetchUser
+
+  // also we can use this method
+  // _.chain(getState().posts)
+  //   .map("userId")
+  //   .uniq()
+  //   .forEach((id) => dispatch(fetchUser(id)))
+  //   .value(); //we use value() gor executing
 };
 
 //   // simple form of function (action creator)
