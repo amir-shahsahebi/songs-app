@@ -4,7 +4,7 @@ import jsonPlaceHolder from "../apis/jsonPlaceHolder";
 export const fetchPostsAndUsers = () => async (dispatch, getState) => {
   // "getState" is second argument that give we access to all data that is in store
   await dispatch(fetchPosts()); // we cannot call "fetchPosts" directly and we must call it in dispatch and also we need "await" because it takes time to response
-  const userIds = _.uniq(_.map(getState().posts, "userId"));
+  const userIds = _.uniq(_.map(getState().posts, "userId")); // this method, find uniq "userId" and return and array of them, // "userId" is uniq in posts
   userIds.forEach((id) => dispatch(fetchUser(id))); //we dont need "await" because after that we dont use anything that needed to fetchUser
 
   // also we can use this method

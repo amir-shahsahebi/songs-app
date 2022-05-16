@@ -36,6 +36,7 @@ class PostList extends Component {
 // important: whenever we need to grab some data from redux, we must use mapStateToProps function ann put in on connect as first argument
 const mapStateToProps = (state) => {
   // state is entire of our store
+  // console.log(state);
   return { posts: state.posts }; // mapStateToProps must return an object and key of that is the key that we crated in reducers
 };
 
